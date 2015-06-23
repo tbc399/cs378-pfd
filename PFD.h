@@ -1,11 +1,18 @@
 #ifndef PFD_H
 #define PFD_H
 
+#include <vector>
+#include <memory>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 class Task {
   
     private:
         
-        map<int, Task*> dependents;
+        map<unsigned int, Task*> dependents;
         
         const unsigned int id;
         
@@ -13,11 +20,13 @@ class Task {
         
     public:
         
-        Task (int id);
+        Task (unsigned int id);
         
         void addDependent (Task& t);
         
         bool operator> (const Task& that);
+        
+        bool operator== (const Task& that);
     
 };
 
