@@ -1,7 +1,7 @@
 #ifndef PFD_H
 #define PFD_H
 
-#include <vector>
+#include <map>
 #include <memory>
 #include <iostream>
 #include <string>
@@ -14,23 +14,23 @@ class Task {
         
         map<unsigned int, Task*> dependents;
         
-        const unsigned int id;
-        
-        int compare (const Task& that);
+        static bool precedes (const Task& t1, const Task& t2);
         
     public:
         
-        Task (unsigned int id);
+        unsigned int id;
+        
+        Task (unsigned int task_id);
         
         void addDependent (Task& t);
         
-        bool operator> (const Task& that);
+        bool operator> (const Task& t);
         
-        bool operator== (const Task& that);
+        bool operator== (const Task& t);
     
 };
 
-void pfd_read (const string& line, vector<shared_ptr<Task>>& tasks);
+void pfd_read (const string& line, map<unsigned int, Task>& tasks);
 
 void pfd_solve (istream& in, ostream& out);
 
