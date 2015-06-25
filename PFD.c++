@@ -1,4 +1,6 @@
 #include <vector>
+#include <queue>
+#include <list>
 #include <memory>
 #include <iostream>
 #include <sstream>
@@ -10,61 +12,158 @@
 
 using namespace std;
 
-Task::Task (unsigned int task_id) {
+vector<Task> Task::all_tasks;
+//vector<bool> Task::all_tasks
+
+Task::Task () {
+    id = 0;
+    still_good = true;
+}
+
+Task& Task::getInstance (unsigned int task_id) {
+    //cout << "getting instance for: " << task_id << "\n";
+    if (task_id >= all_tasks.size()) {
+        all_tasks.resize(task_id + 1);
+        all_tasks[task_id].setId(task_id);
+        //all_tasks[task_id].setStillGood(true);
+    } else if (all_tasks[task_id].getId() == 0) {
+        all_tasks[task_id].setId(task_id);
+        //all_tasks[task_id].setStillGood(true);
+    }
+    return all_tasks[task_id];
+}
+
+Task::operator bool () const {
+    return still_good;
+}
+
+unsigned int Task::getId () {
+    return id;
+}
+
+void Task::setId (unsigned int task_id) {
     id = task_id;
 }
 
-bool Task::precedes (const Task& t1, const Task& t2) {
-    if (t1.dependents.size() == 0)
-        return false;
-    for (const pair<const unsigned int, Task*>& kv : t1.dependents) {
-        if (*(kv.second) == t2) {
-            return true;
-        } else {
-            if (precedes(*(kv.second), t2))
-                return true;
-        }
-    }
-    return false;
+void Task::setStillGood (bool b) {
+    still_good = b;
 }
 
-void Task::addDependent (Task& t) {
-    this->dependents[t.id] = &t;
+void Task::completed () {
+    //cout << "complete() called on id: " << id << "\n";
+    still_good = false;
 }
 
-bool Task::operator> (const Task& t) {
-    if (precedes(*this, t))
-        return true;
-    else if (precedes(t, *this))
-        return false;
-    else
-        return id < t.id;
-}
-
-bool Task::operator== (const Task& t) {
-    return id == t.id;
-}
-
-void pfd_read (const string& line, map<unsigned int, Task>& tasks) {
+void pfd_read (const string& line, vector<list<int>>& tasks) {
     istringstream iss(line);
     unsigned int target_id;
     iss >> target_id;
-    //Task t(target_id);
-    if (find(tasks.begin(), tasks.end(), target_id) == tasks.end()) {
-        Task target(target_id);
-        tasks[target_id] = target;
-    }
     unsigned int ibuf;
     iss >> ibuf;
     for (int i = ibuf; i > 0; --i) {
         iss >> ibuf;
-        //Task dep(ibuf);
-        if (find(tasks.begin(), tasks.end(), ibuf) == tasks.end()) {
-            Task dep(ibuf);
-            tasks[ibuf] = dep;
+        tasks[target_id].push_back(ibuf);
+    }
+}
+
+void pfd_eval (vector<list<int>>& tasks, vector<bool>& tasks_completed, vector<int>& ordered_ids) {
+    priority_queue<int, vector<int>, greater<int>> pq;
+    for (int i = 1; i < (int)(tasks.size()); ++i) {
+        cout << i << " -> " << tasks_completed[i] << "\n";
+        //if (!Task::getInstance(i))
+        if (tasks_completed[i])
+            continue;
+        //cout << "tasks["<<i<<"].size(): " << tasks[i].size() << "\n";
+        /*
+        if (tasks[i].size() == 0) {
+            pq.push(i);
+            tasks_completed[i] = true;
+            cout << "PUSHING " << i << " ONTO QUEUE\n";
+        } else {*/
+            pfd_eval_help(i, tasks, tasks_completed, ordered_ids, pq);
+            //pq.push(i);
+            //cout << "PUSHING "<<i<<" TO THE QUEUE\n";
+            /*
+            while (pq.size() > 0) {
+                ordered_ids.push_back(pq.top());
+                //tasks_completed[pq.top()] = true;
+                pq.pop();
+            }
+            pq.push(i);
+            tasks_completed[i] = true;
+            */
+        //}
+    }
+    while (!pq.empty()) {
+        ordered_ids.push_back(pq.top());
+        cout << "POPING "<<pq.top()<<" FROM THE QUEUE\n";
+        pq.pop();
+    }
+}
+
+void pfd_eval_help (int index,
+                    vector<list<int>>& tasks,
+                    vector<bool>& tasks_completed,
+                    vector<int>& ordered_ids,
+                    priority_queue<int, vector<int>, greater<int>>& pq) {
+    if (tasks_completed[index])
+        return;
+    list<int>& deps = tasks[index];
+    if (deps.size() == 0) {
+        pq.push(index);
+        cout << "PUSHING "<<index<<" TO THE QUEUE 3\n";
+        tasks_completed[index] = true;
+    } else {
+        for (auto it = deps.begin(); it != deps.end(); ++it) {
+            if (tasks_completed[*it])
+                continue;
+            /*
+            if (pq.top() == *it) {
+                ordered_ids.push_back(pq.top());
+                pq.pop();
+                cout << "POPING "<<*it<<" FROM THE QUEUE\n";
+                tasks_completed[*it] = true;
+                continue;
+            }*/
+            pfd_eval_help(*it, tasks, tasks_completed, ordered_ids, pq);
+            tasks_completed[*it] = true;
+            if (pq.top() == *it) {
+                ordered_ids.push_back(pq.top());
+                pq.pop();
+                cout << "POPING "<<*it<<" FROM THE QUEUE\n";
+                //tasks_completed[*it] = true;
+                continue;
+            }
+            /*
+            while (pq.size() > 0) {
+                ordered_ids.push_back(pq.top());
+                //tasks_completed[pq.top()] = true;
+                pq.pop();
+            }
+            */
+            if (pq.empty() || pq.top() != *it) {
+                pq.push(*it);
+                cout << "PUSHING "<<*it<<" TO THE QUEUE 1\n";
+                cout << "TOP = " << pq.top() << "\n";
+            }
+            //tasks_completed[*it] = true;
         }
-        tasks[target_id].addDependent(tasks[ibuf]);
-        //tasks.push_back(dep);
+        if (pq.empty() || pq.top() != index) {
+            pq.push(index);
+            cout << "PUSHING "<<index<<" TO THE QUEUE 2\n";
+        }
+    }
+}
+
+void pfd_print (ostream& out, vector<int>& ordered_ids) {
+    if (ordered_ids.size() == 1) // for whatever weird reason
+        out << ordered_ids[0] << "\n";
+    else {
+        out << *(ordered_ids.begin()) << " ";
+        for (auto it = ordered_ids.begin() + 1; it != ordered_ids.end() - 1; ++it) {
+            out << *it << " ";
+        }
+        out << *(ordered_ids.end() - 1) << "\n";
     }
 }
 
@@ -76,17 +175,13 @@ void pfd_solve (istream& in, ostream& out) {
     iss >> num_tasks;
     int num_targets;
     iss >> num_targets;
-    map<unsigned int, Task> tasks_m;
+    vector<list<int>> tasks(num_tasks+1); // + 1 since we have no 0th task
     for (int i = 0; i < num_targets; ++i) {
         in >> s;
-        pfd_read(s, tasks_m);
+        pfd_read(s, tasks);
     }
-    vector<Task> tasks_v(tasks_m.size());
-    copy(tasks_m.begin(), tasks_m.end(), tasks_v.begin());
-    sort(tasks_v.begin(), tasks_v.end());
-    out << (tasks_v.begin())->id << " ";
-    for (auto it = (tasks_v.begin() + 1); it != (tasks_v.end() - 1); ++it) {
-        out << it->id << " ";
-    }
-    out << (tasks_v.end() - 1)->id << "\n";
+    vector<int> ordered_ids;
+    vector<bool> tasks_completed(num_tasks+1, false);
+    pfd_eval(tasks, tasks_completed, ordered_ids);
+    pfd_print(out, ordered_ids);
 }
