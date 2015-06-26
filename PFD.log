@@ -1,0 +1,53 @@
+commit ab4064c45e1b2820516a20904981635faec4f2ea
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Thu Jun 25 20:04:37 2015 -0500
+
+    made the documentation with doxygen
+
+commit fdcb1ec7a72f90bfeebc69b4fc145dffa19313d9
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Thu Jun 25 19:59:10 2015 -0500
+
+    added documentation to PFD.h
+
+commit c6a7d5678f18d8a088ab70c621d8feae6450864a
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Thu Jun 25 15:12:20 2015 -0500
+
+    branching off to try another solution since this one is not working
+
+commit 1f57535c3a6536e5c15ca302efb53cf0591a4a5c
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Thu Jun 25 15:11:05 2015 -0500
+
+    added the run harness
+
+commit 7d07e81c124155bfa5c3afbe79ab4380711c8eb0
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Wed Jun 24 11:46:51 2015 -0500
+
+    committing before opening a new branch to fix this crap
+
+commit 8feaca5a777bb22c37eb55bdd498d0282c702990
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Tue Jun 23 16:12:26 2015 -0500
+
+    added the .gitignore, .travis.yml, and makefile
+
+commit 9375fef0da7f89d0420e38858b81e027808bf5cc
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Tue Jun 23 16:04:47 2015 -0500
+
+    added the first string of unit tests in TestPFD.c++
+
+commit 0ccfad18b59d95b3d057702d3091e231343e3590
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Tue Jun 23 13:53:08 2015 -0500
+
+    added a starting interface for PFD using class Task, pfd_read() and pfd_solve()
+
+commit 4224c251c366379829d5193b1423f31731dd52df
+Author: Travis Cammack <cammack@utexas.edu>
+Date:   Fri Jun 19 21:47:15 2015 -0500
+
+    added PFD.*
