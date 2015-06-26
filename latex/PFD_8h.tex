@@ -1,0 +1,92 @@
+\hypertarget{PFD_8h}{\section{P\-F\-D.\-h File Reference}
+\label{PFD_8h}\index{P\-F\-D.\-h@{P\-F\-D.\-h}}
+}
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$memory$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$queue$>$}\\*
+{\ttfamily \#include $<$list$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classTaskCompare}{Task\-Compare}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{PFD_8h_aed19543fa1f0fa11289ecbba54a43334}{pfd\-\_\-read} (const string \&line, vector$<$ pair$<$ int, int $>$$>$ \&relations)
+\item 
+void \hyperlink{PFD_8h_a6ad321f0cdec4aa4f1bda91174b3b6ea}{pfd\-\_\-eval} (int num\-\_\-tasks, vector$<$ pair$<$ int, int $>$$>$ \&relations, vector$<$ int $>$ \&ordered\-\_\-tasks)
+\item 
+void \hyperlink{PFD_8h_a0d446917c4046f40c8cdcbf6f712312b}{pfd\-\_\-print} (ostream \&out, vector$<$ int $>$ \&ordered\-\_\-tasks)
+\item 
+void \hyperlink{PFD_8h_a6584b134df3d4e68732be7089136c17e}{pfd\-\_\-solve} (istream \&in, ostream \&out)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{PFD_8h_a6ad321f0cdec4aa4f1bda91174b3b6ea}{\index{P\-F\-D.\-h@{P\-F\-D.\-h}!pfd\-\_\-eval@{pfd\-\_\-eval}}
+\index{pfd\-\_\-eval@{pfd\-\_\-eval}!PFD.h@{P\-F\-D.\-h}}
+\subsubsection[{pfd\-\_\-eval}]{\setlength{\rightskip}{0pt plus 5cm}void pfd\-\_\-eval (
+\begin{DoxyParamCaption}
+\item[{int}]{num\-\_\-tasks, }
+\item[{vector$<$ pair$<$ int, int $>$$>$ \&}]{relations, }
+\item[{vector$<$ int $>$ \&}]{ordered\-\_\-tasks}
+\end{DoxyParamCaption}
+)}}\label{PFD_8h_a6ad321f0cdec4aa4f1bda91174b3b6ea}
+Handles the ordering of the tasks based on the task relationships specified in the relations vector 
+\begin{DoxyParams}{Parameters}
+{\em num\-\_\-tasks} & the number of tasks to be ordered within \mbox{[}1, 100\mbox{]} \\
+\hline
+{\em relations} & the list of pairs of tasks that defines the ordering between them \\
+\hline
+{\em ordered\-\_\-tasks} & the output vector to store the sorted tasks in \\
+\hline
+\end{DoxyParams}
+\hypertarget{PFD_8h_a0d446917c4046f40c8cdcbf6f712312b}{\index{P\-F\-D.\-h@{P\-F\-D.\-h}!pfd\-\_\-print@{pfd\-\_\-print}}
+\index{pfd\-\_\-print@{pfd\-\_\-print}!PFD.h@{P\-F\-D.\-h}}
+\subsubsection[{pfd\-\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void pfd\-\_\-print (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{out, }
+\item[{vector$<$ int $>$ \&}]{ordered\-\_\-tasks}
+\end{DoxyParamCaption}
+)}}\label{PFD_8h_a0d446917c4046f40c8cdcbf6f712312b}
+Writes out all the elements from ordered\-\_\-tasks into the ostream reference starting from the beginning of the vector 
+\begin{DoxyParams}{Parameters}
+{\em out} & an output stream to write to \\
+\hline
+{\em ordered\-\_\-tasks} & the elements to write out to the stream \\
+\hline
+\end{DoxyParams}
+\hypertarget{PFD_8h_aed19543fa1f0fa11289ecbba54a43334}{\index{P\-F\-D.\-h@{P\-F\-D.\-h}!pfd\-\_\-read@{pfd\-\_\-read}}
+\index{pfd\-\_\-read@{pfd\-\_\-read}!PFD.h@{P\-F\-D.\-h}}
+\subsubsection[{pfd\-\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}void pfd\-\_\-read (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{line, }
+\item[{vector$<$ pair$<$ int, int $>$$>$ \&}]{relations}
+\end{DoxyParamCaption}
+)}}\label{PFD_8h_aed19543fa1f0fa11289ecbba54a43334}
+Reads in a single line describing a target and it's dependencies 
+\begin{DoxyParams}{Parameters}
+{\em line} & a single line from the input file \\
+\hline
+{\em relations} & an output vector to put list of pairs of tasks that defines the ordering between them \\
+\hline
+\end{DoxyParams}
+\hypertarget{PFD_8h_a6584b134df3d4e68732be7089136c17e}{\index{P\-F\-D.\-h@{P\-F\-D.\-h}!pfd\-\_\-solve@{pfd\-\_\-solve}}
+\index{pfd\-\_\-solve@{pfd\-\_\-solve}!PFD.h@{P\-F\-D.\-h}}
+\subsubsection[{pfd\-\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}void pfd\-\_\-solve (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{in, }
+\item[{ostream \&}]{out}
+\end{DoxyParamCaption}
+)}}\label{PFD_8h_a6584b134df3d4e68732be7089136c17e}
+Calls \hyperlink{PFD_8h_aed19543fa1f0fa11289ecbba54a43334}{pfd\-\_\-read()}, \hyperlink{PFD_8h_a6ad321f0cdec4aa4f1bda91174b3b6ea}{pfd\-\_\-eval()} and \hyperlink{PFD_8h_a0d446917c4046f40c8cdcbf6f712312b}{pfd\-\_\-print()} using the input it receives from istream 
+\begin{DoxyParams}{Parameters}
+{\em in} & the input stream for the dependencies \\
+\hline
+{\em out} & the output stream to write the task orders to \\
+\hline
+\end{DoxyParams}

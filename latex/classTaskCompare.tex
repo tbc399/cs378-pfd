@@ -1,0 +1,123 @@
+\hypertarget{classTaskCompare}{\section{Task\-Compare Class Reference}
+\label{classTaskCompare}\index{Task\-Compare@{Task\-Compare}}
+}
+
+
+{\ttfamily \#include $<$P\-F\-D.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTaskCompare_a7250eabb9b08ceae0bf3c87b2bc6dc39}{Task\-Compare} (vector$<$ pair$<$ int, int $>$$>$ \&\hyperlink{classTaskCompare_ac3bbc9c25373532bdbd74f42830dc652}{relations})
+\item 
+bool \hyperlink{classTaskCompare_af7f82bae4280a4d8484210cf13035f3f}{operator()} (int lhs, int rhs)
+\item 
+\hyperlink{classTaskCompare_a7250eabb9b08ceae0bf3c87b2bc6dc39}{Task\-Compare} (vector$<$ pair$<$ int, int $>$$>$ \&\hyperlink{classTaskCompare_ac3bbc9c25373532bdbd74f42830dc652}{relations})
+\item 
+bool \hyperlink{classTaskCompare_af7f82bae4280a4d8484210cf13035f3f}{operator()} (int lhs, int rhs)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classTaskCompare_a6961f7d88cd831a3b2451c68513b892f}{precedes} (int lhs, int rhs)
+\item 
+bool \hyperlink{classTaskCompare_a6961f7d88cd831a3b2451c68513b892f}{precedes} (int lhs, int rhs)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ pair$<$ int, int $>$ $>$ \& \hyperlink{classTaskCompare_ac3bbc9c25373532bdbd74f42830dc652}{relations}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A function object that defines a binary predicate that is used to determine an ordering between pairs of tasks. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTaskCompare_a7250eabb9b08ceae0bf3c87b2bc6dc39}{\index{Task\-Compare@{Task\-Compare}!Task\-Compare@{Task\-Compare}}
+\index{Task\-Compare@{Task\-Compare}!TaskCompare@{Task\-Compare}}
+\subsubsection[{Task\-Compare}]{\setlength{\rightskip}{0pt plus 5cm}Task\-Compare\-::\-Task\-Compare (
+\begin{DoxyParamCaption}
+\item[{vector$<$ pair$<$ int, int $>$$>$ \&}]{relations}
+\end{DoxyParamCaption}
+)}}\label{classTaskCompare_a7250eabb9b08ceae0bf3c87b2bc6dc39}
+The only constructor for this function object 
+\begin{DoxyParams}{Parameters}
+{\em relations} & the predefined relationships between tasks \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTaskCompare_a7250eabb9b08ceae0bf3c87b2bc6dc39}{\index{Task\-Compare@{Task\-Compare}!Task\-Compare@{Task\-Compare}}
+\index{Task\-Compare@{Task\-Compare}!TaskCompare@{Task\-Compare}}
+\subsubsection[{Task\-Compare}]{\setlength{\rightskip}{0pt plus 5cm}Task\-Compare\-::\-Task\-Compare (
+\begin{DoxyParamCaption}
+\item[{vector$<$ pair$<$ int, int $>$$>$ \&}]{relations}
+\end{DoxyParamCaption}
+)}}\label{classTaskCompare_a7250eabb9b08ceae0bf3c87b2bc6dc39}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTaskCompare_af7f82bae4280a4d8484210cf13035f3f}{\index{Task\-Compare@{Task\-Compare}!operator()@{operator()}}
+\index{operator()@{operator()}!TaskCompare@{Task\-Compare}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}bool Task\-Compare\-::operator() (
+\begin{DoxyParamCaption}
+\item[{int}]{lhs, }
+\item[{int}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{classTaskCompare_af7f82bae4280a4d8484210cf13035f3f}
+\hypertarget{classTaskCompare_af7f82bae4280a4d8484210cf13035f3f}{\index{Task\-Compare@{Task\-Compare}!operator()@{operator()}}
+\index{operator()@{operator()}!TaskCompare@{Task\-Compare}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}bool Task\-Compare\-::operator() (
+\begin{DoxyParamCaption}
+\item[{int}]{lhs, }
+\item[{int}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{classTaskCompare_af7f82bae4280a4d8484210cf13035f3f}
+Used to test two tasks against each other 
+\begin{DoxyParams}{Parameters}
+{\em lhs} & \\
+\hline
+{\em rhs} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if rhs precedes lhs in the defined ordering 
+\end{DoxyReturn}
+\hypertarget{classTaskCompare_a6961f7d88cd831a3b2451c68513b892f}{\index{Task\-Compare@{Task\-Compare}!precedes@{precedes}}
+\index{precedes@{precedes}!TaskCompare@{Task\-Compare}}
+\subsubsection[{precedes}]{\setlength{\rightskip}{0pt plus 5cm}bool Task\-Compare\-::precedes (
+\begin{DoxyParamCaption}
+\item[{int}]{lhs, }
+\item[{int}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classTaskCompare_a6961f7d88cd831a3b2451c68513b892f}
+\hypertarget{classTaskCompare_a6961f7d88cd831a3b2451c68513b892f}{\index{Task\-Compare@{Task\-Compare}!precedes@{precedes}}
+\index{precedes@{precedes}!TaskCompare@{Task\-Compare}}
+\subsubsection[{precedes}]{\setlength{\rightskip}{0pt plus 5cm}bool Task\-Compare\-::precedes (
+\begin{DoxyParamCaption}
+\item[{int}]{lhs, }
+\item[{int}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classTaskCompare_a6961f7d88cd831a3b2451c68513b892f}
+Used by operator() to determine if one task precedes another 
+\begin{DoxyParams}{Parameters}
+{\em lhs} & \\
+\hline
+{\em rhs} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if rhs preceds lhs 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classTaskCompare_ac3bbc9c25373532bdbd74f42830dc652}{\index{Task\-Compare@{Task\-Compare}!relations@{relations}}
+\index{relations@{relations}!TaskCompare@{Task\-Compare}}
+\subsubsection[{relations}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ pair$<$ int, int $>$ $>$ \& Task\-Compare\-::relations\hspace{0.3cm}{\ttfamily [private]}}}\label{classTaskCompare_ac3bbc9c25373532bdbd74f42830dc652}
+the container to hold the relationships between tasks 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{PFD_8h}{P\-F\-D.\-h}\item 
+\hyperlink{SpherePFD_8c_09_09}{Sphere\-P\-F\-D.\-c++}\item 
+\hyperlink{PFD_8c_09_09}{P\-F\-D.\-c++}\end{DoxyCompactItemize}
