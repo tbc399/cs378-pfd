@@ -1,3 +1,15 @@
+// -------
+// defines
+// -------
+
+#ifdef ONLINE_JUDGE
+    #define NDEBUG
+#endif
+
+// --------
+// includes
+// --------
+
 #include <vector>
 #include <queue>
 #include <list>
@@ -8,9 +20,16 @@
 #include <utility>
 #include <algorithm>
 
-#include "PFD.h"
-
 using namespace std;
+
+class TaskCompare {
+    private:
+        vector<pair<int, int>>& relations;
+        bool precedes (int lhs, int rhs);
+    public:
+        TaskCompare (vector<pair<int, int>>& relations);
+        bool operator() (int lhs, int rhs);
+};
 
 TaskCompare::TaskCompare (vector<pair<int, int>>& task_relations) :
                           relations(task_relations) {}
@@ -91,3 +110,12 @@ void pfd_solve (istream& in, ostream& out) {
     pfd_eval(num_tasks, relations, ordered_tasks);
     pfd_print(out, ordered_tasks);
 }
+
+// ----
+// main
+// ----
+
+int main () {
+    using namespace std;
+    pfd_solve(cin, cout);
+    return 0;}
